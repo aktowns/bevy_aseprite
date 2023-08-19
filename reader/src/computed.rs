@@ -762,8 +762,8 @@ fn image_for_frame(aseprite: &Aseprite, frame: u16) -> AseResult<RgbaImage> {
                     );
 
                     image
-                        .get_pixel_mut(pix_x as u32, pix_y as u32)
-                        .blend(&pixel);
+                        .get_pixel_mut_checked(pix_x as u32, pix_y as u32)
+                        .map(|x| x.blend(&pixel));
                 }
             }
             Ok(())
